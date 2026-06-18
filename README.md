@@ -404,13 +404,11 @@ Este projeto é fornecido como exemplo educacional. Para informações de licen�
 
 ## 👨‍💻 Autor
 ### GILBRTO JUNIOR DOS SANTOS
-Projeto desenvolvido como parte de um curso de certificação em Spring Boot.
+Projeto desenvolvido como parte de estudos em arquitetura de software e desenvolvimento backend com Java e Spring Boot.
 
 ---
 
 ## 🎯 Próximos Passos
-
-Após clonar e entender o projeto, considere:
 
 - [ ] Implementar endpoints GET, PUT e DELETE para Usuários
 - [ ] Adicionar validações com Bean Validation
