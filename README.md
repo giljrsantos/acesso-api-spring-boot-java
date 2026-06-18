@@ -408,11 +408,11 @@ Projeto desenvolvido como parte de um curso de certificação em Spring Boot.
 
 ---
 
-## 🎯 Próximos Passos Sugeridos
+## 🎯 Próximos Passos
 
 Após clonar e entender o projeto, considere:
 
-- [x] Implementar endpoints GET, PUT e DELETE para Usuários
+- [ ] Implementar endpoints GET, PUT e DELETE para Usuários
 - [ ] Adicionar validações com Bean Validation
 - [ ] Implementar Spring Security com JWT
 - [ ] Criar repositórios para Morador, Visitante e Visita
