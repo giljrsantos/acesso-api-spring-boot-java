@@ -8,10 +8,7 @@ pom.xml.releaseBackup
 github.txt
 # IDE
 .idea/
-.mvn/
 .gitignore
-mvnw
-mvnw.cmd
 .vscode/
 *.swp
 *.swo
