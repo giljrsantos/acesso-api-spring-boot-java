@@ -410,6 +410,8 @@ Projeto desenvolvido como parte de estudos em arquitetura de software e desenvol
 
 ## 🎯 Próximos Passos
 
+- [x] Implementar endpoints POST para Pessoa
+- [x] Implementar endpoints POST para Usuários com validação de email e senha e referência a Pessoa
 - [ ] Implementar endpoints GET, PUT e DELETE para Usuários
 - [ ] Adicionar validações com Bean Validation
 - [ ] Implementar Spring Security com JWT
