@@ -370,9 +370,8 @@ Content-Type: application/json
 
 ### Visitantes
 
-#### Criar Visitante (em desenvolvimento)
-- ⏳ Endpoint não implementado ainda
-- ⏳ DTO e Converter aguardando implementação
+- ✅ Endpoint implementado ainda
+- ✅ DTO e Converter aguardando implementado
 
 ---
 
