@@ -1,11 +1,9 @@
 package io.dev.acesso_api.infra;
 
-import io.dev.acesso_api.core.ports.MoradorRepositoryPort;
-import io.dev.acesso_api.core.ports.MoradorServicePort;
-import io.dev.acesso_api.core.ports.UsuarioRepositoryPort;
-import io.dev.acesso_api.core.ports.UsuarioServicePort;
+import io.dev.acesso_api.core.ports.*;
 import io.dev.acesso_api.core.services.MoradorService;
 import io.dev.acesso_api.core.services.UsuarioService;
+import io.dev.acesso_api.core.services.VisitanteService;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,5 +24,10 @@ public class BensConfig {
     @Bean
     public MoradorServicePort moradorServicePort(MoradorRepositoryPort moradorRepositoryPort){
         return new MoradorService(moradorRepositoryPort);
+    }
+
+    @Bean
+    public VisitanteServicePort visitanteServicePort(VisitanteRepositoryPort visitanteRepositoryPort){
+        return new VisitanteService(visitanteRepositoryPort);
     }
 }
