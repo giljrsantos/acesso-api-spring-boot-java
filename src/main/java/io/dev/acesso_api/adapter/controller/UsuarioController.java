@@ -21,6 +21,8 @@ public class UsuarioController {
     @ResponseStatus(HttpStatus.CREATED)
     public UsuarioDto create(@RequestBody UsuarioDto usuarioDto){
         return usuarioConverter
-                .toDto(usuarioServicePort.createUsuario(usuarioConverter.toTomain(usuarioDto)));
+                .toDto(usuarioServicePort
+                        .createUsuario(usuarioConverter
+                                .toTomain(usuarioDto)));
     }
 }
