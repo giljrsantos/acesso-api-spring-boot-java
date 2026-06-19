@@ -63,41 +63,66 @@ acesso-api/
 │   ├── main/
 │   │   ├── java/io/dev/acesso_api/
 │   │   │   ├── Setup.java                           # Classe principal (entry point)
-│   │   │   ├── adapter/
+│   │   │   │
+│   │   │   ├── adapter/                             # Camada de Adaptadores
 │   │   │   │   ├── controller/
-│   │   │   │   │   └── UsuarioController.java       # Endpoints REST
+│   │   │   │   │   ├── MoradorController.java       # Endpoints REST para Morador
+│   │   │   │   │   └── UsuarioController.java       # Endpoints REST para Usuario
+│   │   │   │   │
 │   │   │   │   ├── convertes/
-│   │   │   │   │   └── UsuarioConverter.java        # Conversão entre Domain e DTO
+│   │   │   │   │   ├── MoradorConverter.java        # Conversão Morador DTO ↔ Domain
+│   │   │   │   │   └── UsuarioConverter.java        # Conversão Usuario DTO ↔ Domain
+│   │   │   │   │
 │   │   │   │   ├── dtos/
-│   │   │   │   │   └── UsuarioDto.java              # Data Transfer Object
+│   │   │   │   │   ├── MoradorDto.java              # Data Transfer Object para Morador
+│   │   │   │   │   └── UsuarioDto.java              # Data Transfer Object para Usuario
+│   │   │   │   │
 │   │   │   │   ├── entities/
-│   │   │   │   │   └── UsuarioEntity.java           # Mapeamento JPA
+│   │   │   │   │   ├── MoradorEntity.java           # Mapeamento JPA para Morador
+│   │   │   │   │   ├── PessoaEntity.java            # Mapeamento JPA para Pessoa
+│   │   │   │   │   └── UsuarioEntity.java           # Mapeamento JPA para Usuario
+│   │   │   │   │
 │   │   │   │   └── repositories/
-│   │   │   │       ├── UsuarioRepository.java       # Interface Spring Data JPA
-│   │   │   │       └── UsuarioRepositoryAdapter.java # Adaptador
-│   │   │   ├── core/
+│   │   │   │       ├── MoradorRepository.java       # Interface Spring Data JPA para Morador
+│   │   │   │       ├── MoradorRepositoryAdapter.java # Implementação do adaptador Morador
+│   │   │   │       ├── PessoaRepository.java        # Interface Spring Data JPA para Pessoa
+│   │   │   │       ├── PessoaRepositoryAdapter.java # Implementação do adaptador Pessoa
+│   │   │   │       ├── UsuarioRepository.java       # Interface Spring Data JPA para Usuario
+│   │   │   │       └── UsuarioRepositoryAdapter.java # Implementação do adaptador Usuario
+│   │   │   │
+│   │   │   ├── core/                                # Camada de Domínio (Lógica de Negócio)
 │   │   │   │   ├── domain/
-│   │   │   │   │   ├── Usuario.java                 # Entidade de domínio
-│   │   │   │   │   ├── Pessoa.java                  # Base para usuários
-│   │   │   │   │   ├── Morador.java                 # Morador do condomínio
-│   │   │   │   │   ├── Visitante.java               # Visitante
-│   │   │   │   │   └── Visita.java                  # Registro de visita
+│   │   │   │   │   ├── Morador.java                 # Entidade de domínio - Morador
+│   │   │   │   │   ├── Pessoa.java                  # Entidade de domínio - Base para usuários
+│   │   │   │   │   ├── Usuario.java                 # Entidade de domínio - Usuario
+│   │   │   │   │   ├── Visitante.java               # Entidade de domínio - Visitante
+│   │   │   │   │   └── Visita.java                  # Entidade de domínio - Registro de visita
+│   │   │   │   │
 │   │   │   │   ├── ports/
-│   │   │   │   │   ├── UsuarioServicePort.java      # Contrato do serviço
-│   │   │   │   │   └── UsuarioRepositoryPort.java   # Contrato do repositório
+│   │   │   │   │   ├── MoradorRepositoryPort.java   # Interface - Contrato do repositório Morador
+│   │   │   │   │   ├── MoradorServicePort.java      # Interface - Contrato do serviço Morador
+│   │   │   │   │   ├── UsuarioRepositoryPort.java   # Interface - Contrato do repositório Usuario
+│   │   │   │   │   └── UsuarioServicePort.java      # Interface - Contrato do serviço Usuario
+│   │   │   │   │
 │   │   │   │   └── services/
-│   │   │   │       └── UsuarioService.java          # Lógica de negócio
+│   │   │   │       ├── MoradorService.java          # Implementação da lógica de negócio - Morador
+│   │   │   │       └── UsuarioService.java          # Implementação da lógica de negócio - Usuario
+│   │   │   │
 │   │   │   └── infra/
-│   │   │       └── BensConfig.java                  # Configurações gerais
+│   │   │       └── BensConfig.java                  # Configurações gerais e Beans do projeto
+│   │   │
 │   │   └── resources/
 │   │       ├── application.properties               # Configurações da aplicação
-│   │       ├── static/                              # Arquivos estáticos
-│   │       └── templates/                           # Templates (se necessário)
+│   │       ├── static/                              # Arquivos estáticos (CSS, JS, etc.)
+│   │       └── templates/                           # Templates HTML (se necessário)
+│   │
 │   └── test/
 │       └── java/io/dev/acesso_api/
-│           └── AcessoApiApplicationTests.java       # Testes
-├── pom.xml                                          # Configuração Maven
-├── mvnw & mvnw.cmd                                  # Maven Wrapper
+│           └── AcessoApiApplicationTests.java       # Testes unitários da aplicação
+│
+├── pom.xml                                          # Configuração Maven com dependências
+├── mvnw & mvnw.cmd                                  # Maven Wrapper (Linux/Mac & Windows)
+├── target/                                          # Diretório de build (gerado automaticamente)
 └── README.md                                        # Este arquivo
 
 ```
@@ -106,21 +131,78 @@ acesso-api/
 
 #### **Arquitetura Hexagonal (Ports and Adapters)**
 
-O projeto segue a arquitetura hexagonal para garantir independência de frameworks e facilitar testes:
+O projeto segue rigorosamente a arquitetura hexagonal para garantir independência de frameworks e facilitar testes. A separação clara entre camadas permite manter a lógica de negócio totalmente desacoplada de tecnologias externas:
 
-- **Core (Domínio)**: Contém a lógica de negócio pura
-  - `domain/`: Entidades de domínio
-  - `ports/`: Contratos/interfaces
-  - `services/`: Implementação de serviços
+**1. Core (Núcleo de Domínio)**
+- **`domain/`**: Contém as entidades de domínio puras (Pessoa, Usuario, Morador, Visitante, Visita)
+  - Lógica de negócio independente de qualquer framework
+  - Sem dependências de Spring, JPA ou banco de dados
+  
+- **`ports/`**: Define contratos (interfaces) para comunicação com o mundo externo
+  - `*RepositoryPort`: Contratos para acesso a dados
+  - `*ServicePort`: Contratos para serviços de domínio
+  - Abstração que permite trocar implementações sem afetar o domínio
 
-- **Adapter**: Conecta o domínio ao mundo externo
-  - `controller/`: API REST
-  - `dtos/`: Transferência de dados
-  - `convertes/`: Mapeamento entre camadas
-  - `entities/`: Mapeamento JPA
-  - `repositories/`: Acesso a dados
+- **`services/`**: Implementação da lógica de negócio
+  - Implementam as interfaces de `ports/`
+  - Orquestram operações do domínio
+  - Validam regras de negócio (ex: verificar duplicatas por CPF)
 
-- **Infra**: Configurações gerais da aplicação
+**2. Adapter (Camada de Adaptadores)**
+- **`controller/`**: Adaptadores de entrada (API REST)
+  - Controllers Spring que expõem endpoints HTTP
+  - Recebem requisições e as convertem para domínio
+  - Retornam respostas para o cliente
+
+- **`dtos/`**: Data Transfer Objects
+  - Estruturas de transferência de dados entre cliente e servidor
+  - Apenas para Usuario e Morador (outras entidades sem exposição por API)
+  - Desacoplam a estrutura interna do domínio da API pública
+
+- **`convertes/`**: Conversores de dados
+  - Convertem entre DTOs ↔ Domínio
+  - Mapeiam dados entre camadas
+  - Lógica de transformação de dados
+
+- **`entities/`**: Adaptadores de persistência (ORM)
+  - Mapeamento JPA das entidades
+  - Anotações do Hibernate/JPA
+  - Refletem a estrutura do banco de dados
+
+- **`repositories/`**: Adaptadores de acesso a dados
+  - `*Repository`: Interfaces Spring Data JPA
+  - `*RepositoryAdapter`: Implementações dos Ports
+  - Conectam domínio ao banco de dados
+
+**3. Infra (Camada de Infraestrutura)**
+- **`BensConfig.java`**: Configurações e Beans
+  - Injeção de dependências do Spring
+  - Configurações da aplicação
+  - Instanciação dos serviços e adaptadores
+
+#### **Fluxo de uma Requisição**
+
+```
+Cliente HTTP
+    ↓
+Controller (adapter/controller/)
+    ↓
+Converter (adapter/convertes/) - DTO → Domain
+    ↓
+ServicePort (core/ports/) - Interface
+    ↓
+Service (core/services/) - Lógica de negócio
+    ↓
+RepositoryPort (core/ports/) - Interface
+    ↓
+RepositoryAdapter (adapter/repositories/)
+    ↓
+RepositoryJPA (adapter/repositories/)
+    ↓
+Entity (adapter/entities/) - JPA
+    ↓
+Banco de Dados (H2)
+```
 
 ---
 
@@ -198,9 +280,14 @@ spring.jpa.properties.hibernate.format_sql=true
 
 ## 🔌 Endpoints da API
 
+### Base URL
+```
+http://localhost:8080/api
+```
+
 ### Usuários
 
-#### Criar Usuário
+#### Criar Usuário (POST)
 
 ```http
 POST /api/usuarios
@@ -210,7 +297,9 @@ Content-Type: application/json
   "email": "usuario@example.com",
   "senha": "senha123",
   "administrador": false,
-  "idPessoa": 1
+  "pessoa": {
+    "nome": "João Silva"
+  }
 }
 ```
 
@@ -221,9 +310,108 @@ Content-Type: application/json
   "email": "usuario@example.com",
   "senha": "senha123",
   "administrador": false,
-  "idPessoa": 1
+  "pessoa": {
+    "id": 1,
+    "nome": "João Silva"
+  }
 }
 ```
+
+**Validações**:
+- ✅ Email único (não permite duplicatas)
+- ✅ Referência a Pessoa obrigatória
+- ⏳ Bean Validation (em desenvolvimento)
+
+---
+
+### Moradores
+
+#### Criar Morador (POST)
+
+```http
+POST /api/moradores
+Content-Type: application/json
+
+{
+  "cpf": "12345678901",
+  "endereco": "Apto 101 - Bloco A",
+  "celular": "(11) 98765-4321",
+  "nome": "Maria Santos"
+}
+```
+
+**Response (201 Created):**
+```json
+{
+  "id": 1,
+  "nome": "Maria Santos",
+  "cpf": "12345678901",
+  "endereco": "Apto 101 - Bloco A",
+  "celular": "(11) 98765-4321"
+}
+```
+
+**Validações**:
+- ✅ CPF único (não permite duplicatas)
+- ✅ Criação automática de Pessoa associada
+- ⏳ Validação de CPF (em desenvolvimento)
+- ⏳ Endpoints GET, PUT, DELETE (em desenvolvimento)
+
+---
+
+### Visitantes
+
+#### Criar Visitante (em desenvolvimento)
+- ⏳ Endpoint não implementado ainda
+- ⏳ DTO e Converter aguardando implementação
+
+---
+
+### Visitas
+
+#### Registrar Visita (em desenvolvimento)
+- ⏳ Endpoint não implementado ainda
+- ⏳ Repositório e Serviço aguardando implementação
+
+---
+
+## 🗄️ Estrutura de Dados (Banco de Dados)
+
+### Tabelas Principais
+
+#### tb_pessoa
+```sql
+CREATE TABLE tb_pessoa (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL
+);
+```
+
+#### tb_usuario
+```sql
+CREATE TABLE tb_usuario (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    administrador BOOLEAN DEFAULT FALSE,
+    pessoa_id BIGINT NOT NULL,
+    FOREIGN KEY (pessoa_id) REFERENCES tb_pessoa(id)
+);
+```
+
+#### tb_morador
+```sql
+CREATE TABLE tb_morador (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    cpf VARCHAR(14) NOT NULL UNIQUE,
+    endereco VARCHAR(255),
+    celular VARCHAR(20),
+    pessoa_id BIGINT NOT NULL,
+    FOREIGN KEY (pessoa_id) REFERENCES tb_pessoa(id)
+);
+```
+
+**Status**: Visitante e Visita ainda não possuem tabelas criadas.
 
 ---
 
@@ -238,7 +426,22 @@ curl -X POST http://localhost:8080/api/usuarios \
     "email": "joao@example.com",
     "senha": "senha456",
     "administrador": false,
-    "idPessoa": 1
+    "pessoa": {
+      "nome": "João Santos"
+    }
+  }'
+```
+
+### Exemplo 2: Criar um novo morador
+
+```bash
+curl -X POST http://localhost:8080/api/moradores \
+  -H "Content-Type: application/json" \
+  -d '{
+    "cpf": "98765432101",
+    "endereco": "Apto 205 - Bloco B",
+    "celular": "(11) 99999-8888",
+    "nome": "Pedro Oliveira"
   }'
 ```
 
@@ -263,9 +466,23 @@ Os testes estão localizados em `src/test/java/`:
 
 ## 📚 Modelos de Domínio
 
-### Usuario
+### Pessoa
+Classe base que representa uma pessoa no sistema. Outras entidades (Usuario, Morador, Visitante) herdam ou referenciam dados de Pessoa.
 
-Representa um usuário do sistema com acesso à plataforma.
+```java
+public class Pessoa {
+    private Long id;
+    private String nome;
+    // Getters e Setters
+}
+```
+
+**Uso**: Base de dados de pessoas do condomínio (proprietários, administradores, visitantes, etc.)
+
+---
+
+### Usuario
+Representa um usuário do sistema com acesso à plataforma e controle de permissões.
 
 ```java
 public class Usuario {
@@ -273,62 +490,92 @@ public class Usuario {
     private String email;
     private String senha;
     private Boolean administrador;
-    private Long idPessoa;
+    private Pessoa pessoa;  // Referência à Pessoa
+    // Getters e Setters
 }
 ```
 
-### Pessoa
+**Campos**:
+- `email`: Email único para autenticação
+- `senha`: Senha para login (recomendado usar BCrypt em produção)
+- `administrador`: Flag indicando se é admin do sistema
+- `pessoa`: Referência à entidade Pessoa
 
-Classe base para representar pessoas no sistema.
+**Endpoints Implementados**:
+- `POST /api/usuarios` - Criar novo usuário
 
-```java
-public class Pessoa {
-    private  Long id;
-    private String nome;
-    // ...
-}
-```
+---
 
 ### Morador
-
-Representa um morador do condomínio.
+Representa um morador do condomínio com informações específicas.
 
 ```java
 public class Morador {
     private Long id;
-    private String rg;
+    private String cpf;
     private String endereco;
     private String celular;
-    private Long idPessoa;
-    // ...
+    private Pessoa pessoa;  // Referência à Pessoa
+    // Getters e Setters
 }
 ```
+
+**Campos**:
+- `cpf`: CPF único (validação: não permite duplicatas)
+- `endereco`: Endereço do imóvel no condomínio
+- `celular`: Telefone de contato
+- `pessoa`: Referência à entidade Pessoa
+
+**Endpoints Implementados**:
+- `POST /api/moradores` - Criar novo morador
+
+---
 
 ### Visitante
-
-Representa um visitante do condomínio.
+Representa um visitante do condomínio. Não possui acesso direto ao sistema, apenas é registrado nas visitas.
 
 ```java
-public class Visitante{
+public class Visitante {
     private Long id;
     private String rg;
-    private Long idPessoa;
-    // ...
+    private Pessoa pessoa;  // Referência à Pessoa
+    // Getters e Setters
 }
 ```
 
-### Visita
+**Status**: Entidade de domínio criada, aguardando implementação de DTOs, Controllers e API.
 
-Registro de visita ao condomínio.
+---
+
+### Visita
+Registro de cada visita realizada ao condomínio. Estabelece a relação entre Visitante e Morador.
 
 ```java
 public class Visita {
     private Long id;
     private LocalDateTime dataHora;
     private Long idVisitante;
-    private Long idMorador;    
-    // ...
+    private Long idMorador;
+    // Getters e Setters
 }
+```
+
+**Campos**:
+- `dataHora`: Timestamp da visita
+- `idVisitante`: Referência ao visitante
+- `idMorador`: Referência ao morador sendo visitado
+
+**Status**: Entidade de domínio criada, aguardando implementação de repositórios, serviços e API.
+
+---
+
+### Relacionamentos
+
+```
+Pessoa (1) ←→ (1) Usuario
+Pessoa (1) ←→ (1) Morador
+Pessoa (1) ←→ (1) Visitante
+Morador (1) ←→ (N) Visita (N) ←→ (1) Visitante
 ```
 
 ---
@@ -410,20 +657,55 @@ Projeto desenvolvido como parte de estudos em arquitetura de software e desenvol
 
 ## 🎯 Próximos Passos
 
+### ✅ Concluído
+- [x] Estrutura base com arquitetura hexagonal
 - [x] Implementar endpoints POST para Pessoa
-- [x] Implementar endpoints POST para Usuários com validação de email e senha e referência a Pessoa
+- [x] Implementar endpoints POST para Usuários com verificação de Email duplicatas e referência a Pessoa
+- [x] Implementar endpoints POST para Morador com verificação de CPF duplicado e referência a Pessoa
+- [x] Criar repositórios para Pessoa, Usuario e Morador
+- [x] Implementar converters para transformação de dados (DTO ↔ Domain)
+- [x] Configurar injeção de dependências com Spring
+
+### 📋 Em Desenvolvimento / Planejado
 - [ ] Implementar endpoints GET, PUT e DELETE para Usuários
-- [ ] Adicionar validações com Bean Validation
+- [ ] Implementar endpoints GET, PUT e DELETE para Moradores
+- [ ] Criar DTOs, Controllers e Converters para Visitante
+- [ ] Criar DTOs, Controllers e Converters para Visita
+- [ ] Criar repositórios completos para Visitante e Visita
+- [ ] Adicionar validações com Bean Validation (@NotNull, @Email, @Size, etc.)
 - [ ] Implementar Spring Security com JWT
-- [ ] Criar repositórios para Morador, Visitante e Visita
-- [ ] Adicionar logs com SLF4J
-- [ ] Implementar tratamento de exceções global
-- [ ] Adicionar testes unitários com JUnit e Mockito
+- [ ] Adicionar criptografia de senhas (BCrypt)
+- [ ] Criar tratamento de exceções global (@ControllerAdvice)
+- [ ] Adicionar logs com SLF4J e Logback
+- [ ] Implementar testes unitários com JUnit 5 e Mockito
+- [ ] Implementar testes de integração
 - [ ] Documentar API com Swagger/OpenAPI
 - [ ] Configurar CI/CD com GitHub Actions
+- [ ] Adicionar paginação nos endpoints GET
+- [ ] Implementar cache de consultas frequentes
 
 ---
 
-**Última atualização**: Junho 2026
+## 📝 Notas de Desenvolvimento
+
+### Convenções Utilizadas
+
+- **Nomenclatura**: CamelCase para classes, snake_case para tabelas e atributos de banco de dados
+- **Arquitetura**: Ports and Adapters (Hexagonal Architecture)
+- **DTOs**: Apenas para entidades expostas via API (Usuario, Morador)
+- **Converters**: Utilizados para transformação entre DTOs e Domain Objects
+- **Services**: Implementam lógica de negócio e validações
+- **Repositories**: Apenas um meio de persistência, implementam os Ports
+
+### Padrões de Projeto Utilizados
+
+- **Dependency Injection**: Utilizado com Spring Framework
+- **Repository Pattern**: Abstração de acesso a dados
+- **DTO Pattern**: Transferência segura de dados entre camadas
+- **Converter/Mapper Pattern**: Transformação entre objetos
+
+---
+
+**Última atualização**: 19 de junho de 2026
 
 Happy Coding! 🚀
