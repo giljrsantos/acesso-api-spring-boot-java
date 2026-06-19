@@ -5,6 +5,9 @@ import io.dev.acesso_api.core.domain.Visitante;
 import io.dev.acesso_api.core.ports.VisitanteRepositoryPort;
 import io.dev.acesso_api.core.ports.VisitanteServicePort;
 
+import java.util.Collection;
+import java.util.List;
+
 
 public class VisitanteService implements VisitanteServicePort {
 
@@ -22,4 +25,16 @@ public class VisitanteService implements VisitanteServicePort {
                 });
         return visitanteRepositoryPort.create(visitante);
     }
+
+    @Override
+    public Visitante obtainByRg(String rg) {
+        return visitanteRepositoryPort.obtainByRg(rg)
+                .orElseThrow(() -> new IllegalArgumentException("Visitante com esse Rg não encontrado!"));
+    }
+
+    @Override
+    public Collection<Visitante> listAll() {
+        return visitanteRepositoryPort.listAll();
+    }
+
 }
