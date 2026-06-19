@@ -68,19 +68,23 @@ acesso-api/
 │   │   │   │   ├── controller/
 │   │   │   │   │   ├── MoradorController.java       # Endpoints REST para Morador
 │   │   │   │   │   └── UsuarioController.java       # Endpoints REST para Usuario
+│   │   │   │   │   └── VisitanteController.java     # Endpoints REST para Visitante
 │   │   │   │   │
 │   │   │   │   ├── convertes/
 │   │   │   │   │   ├── MoradorConverter.java        # Conversão Morador DTO ↔ Domain
 │   │   │   │   │   └── UsuarioConverter.java        # Conversão Usuario DTO ↔ Domain
+│   │   │   │   │   └── VisitanteConverter.java      # Conversão Visitante DTO ↔ Domain
 │   │   │   │   │
 │   │   │   │   ├── dtos/
 │   │   │   │   │   ├── MoradorDto.java              # Data Transfer Object para Morador
 │   │   │   │   │   └── UsuarioDto.java              # Data Transfer Object para Usuario
+│   │   │   │   │   └── VisitanteDto.java            # Data Transfer Object para Visitante
 │   │   │   │   │
 │   │   │   │   ├── entities/
 │   │   │   │   │   ├── MoradorEntity.java           # Mapeamento JPA para Morador
 │   │   │   │   │   ├── PessoaEntity.java            # Mapeamento JPA para Pessoa
 │   │   │   │   │   └── UsuarioEntity.java           # Mapeamento JPA para Usuario
+│   │   │   │   │   └── VisitanteEntity.java         # Mapeamento JPA para Visitante
 │   │   │   │   │
 │   │   │   │   └── repositories/
 │   │   │   │       ├── MoradorRepository.java       # Interface Spring Data JPA para Morador
@@ -89,6 +93,8 @@ acesso-api/
 │   │   │   │       ├── PessoaRepositoryAdapter.java # Implementação do adaptador Pessoa
 │   │   │   │       ├── UsuarioRepository.java       # Interface Spring Data JPA para Usuario
 │   │   │   │       └── UsuarioRepositoryAdapter.java # Implementação do adaptador Usuario
+│   │   │   │       ├── VisitanteRepository.java     # Interface Spring Data JPA para Visitante
+│   │   │   │       └── VisitanteRepositoryAdapter.java # Implementação do adaptador Visitante
 │   │   │   │
 │   │   │   ├── core/                                # Camada de Domínio (Lógica de Negócio)
 │   │   │   │   ├── domain/
@@ -103,10 +109,13 @@ acesso-api/
 │   │   │   │   │   ├── MoradorServicePort.java      # Interface - Contrato do serviço Morador
 │   │   │   │   │   ├── UsuarioRepositoryPort.java   # Interface - Contrato do repositório Usuario
 │   │   │   │   │   └── UsuarioServicePort.java      # Interface - Contrato do serviço Usuario
+│   │   │   │   │   ├── VisitanteRepositoryPort.java # Interface - Contrato do repositório Visitante
+│   │   │   │   │   └── VisitanteServicePort.java    # Interface - Contrato do serviço Visitante
 │   │   │   │   │
 │   │   │   │   └── services/
 │   │   │   │       ├── MoradorService.java          # Implementação da lógica de negócio - Morador
 │   │   │   │       └── UsuarioService.java          # Implementação da lógica de negócio - Usuario
+│   │   │   │       └── VisitanteService.java        # Implementação da lógica de negócio - Visitante
 │   │   │   │
 │   │   │   └── infra/
 │   │   │       └── BensConfig.java                  # Configurações gerais e Beans do projeto
@@ -662,6 +671,8 @@ Projeto desenvolvido como parte de estudos em arquitetura de software e desenvol
 - [x] Implementar endpoints POST para Pessoa
 - [x] Implementar endpoints POST para Usuários com verificação de Email duplicatas e referência a Pessoa
 - [x] Implementar endpoints POST para Morador com verificação de CPF duplicado e referência a Pessoa
+- [x] Implementar endpoints POST para Visitante com verificação de RG duplicatas e referência a Pessoa
+- [x] Criar DTOs, Controllers e Converters para Visitante
 - [x] Criar repositórios para Pessoa, Usuario e Morador
 - [x] Implementar converters para transformação de dados (DTO ↔ Domain)
 - [x] Configurar injeção de dependências com Spring
@@ -669,7 +680,6 @@ Projeto desenvolvido como parte de estudos em arquitetura de software e desenvol
 ### 📋 Em Desenvolvimento / Planejado
 - [ ] Implementar endpoints GET, PUT e DELETE para Usuários
 - [ ] Implementar endpoints GET, PUT e DELETE para Moradores
-- [ ] Criar DTOs, Controllers e Converters para Visitante
 - [ ] Criar DTOs, Controllers e Converters para Visita
 - [ ] Criar repositórios completos para Visitante e Visita
 - [ ] Adicionar validações com Bean Validation (@NotNull, @Email, @Size, etc.)
