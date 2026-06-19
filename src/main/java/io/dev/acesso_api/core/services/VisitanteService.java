@@ -16,10 +16,10 @@ public class VisitanteService implements VisitanteServicePort {
 
     @Override
     public Visitante createVisitante(Visitante visitante) {
-        Visitante visitanteExiste = visitanteRepositoryPort.obtainByRg(visitante.getRg());
-        if(visitanteExiste != null){
-            throw new IllegalArgumentException("Visitante com esse Rg já cadastrado!");
-        }
+        visitanteRepositoryPort.obtainByRg(visitante.getRg())
+                .ifPresent(v -> {
+                    throw new IllegalArgumentException("Visitante com esse Rg já cadastrado!");
+                });
         return visitanteRepositoryPort.create(visitante);
     }
 }
