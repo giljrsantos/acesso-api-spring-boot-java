@@ -676,10 +676,11 @@ Projeto desenvolvido como parte de estudos em arquitetura de software e desenvol
 - [x] Criar repositórios para Pessoa, Usuario e Morador
 - [x] Implementar converters para transformação de dados (DTO ↔ Domain)
 - [x] Configurar injeção de dependências com Spring
+- [x] Implementar endpoint GET para listar o Visitante pesquisando por RG
+- [x] Implementar endpoint GET para listar todos os Visitantes cadastrado no sistema
 
 ### 📋 Em Desenvolvimento / Planejado
 - [ ] Implementar endpoints GET, PUT e DELETE para Usuários
-- [ ] Implementar endpoints GET, PUT e DELETE para Moradores
 - [ ] Criar DTOs, Controllers e Converters para Visita
 - [ ] Criar repositórios completos para Visitante e Visita
 - [ ] Adicionar validações com Bean Validation (@NotNull, @Email, @Size, etc.)
