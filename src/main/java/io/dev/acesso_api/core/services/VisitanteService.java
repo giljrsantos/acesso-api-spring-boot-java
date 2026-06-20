@@ -2,6 +2,7 @@ package io.dev.acesso_api.core.services;
 
 
 import io.dev.acesso_api.core.domain.Visitante;
+import io.dev.acesso_api.core.exception.BusinessException;
 import io.dev.acesso_api.core.ports.VisitanteRepositoryPort;
 import io.dev.acesso_api.core.ports.VisitanteServicePort;
 
@@ -21,7 +22,7 @@ public class VisitanteService implements VisitanteServicePort {
     public Visitante createVisitante(Visitante visitante) {
         visitanteRepositoryPort.obtainByRg(visitante.getRg())
                 .ifPresent(v -> {
-                    throw new IllegalArgumentException("Visitante com esse Rg já cadastrado!");
+                    throw new BusinessException("Visitante com esse Rg já cadastrado!");
                 });
         return visitanteRepositoryPort.create(visitante);
     }
