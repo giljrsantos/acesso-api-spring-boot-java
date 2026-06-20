@@ -676,7 +676,8 @@ Projeto desenvolvido como parte de estudos em arquitetura de software e desenvol
 - [x] Implementar converters para transformação de dados (DTO ↔ Domain)
 - [x] Configurar injeção de dependências com Spring
 - [x] Implementar endpoint GET para listar o Visitante pesquisando por RG
-- [x] Implementar endpoint GET para listar todos os Visitantes cadastrado no sistema
+- [x] Implementar endpoint GET para listar todos os Visitantes cadastrados no sistema
+- [x] Implementar tratamento de exceções global (@ControllerAdvice) -> Tratamento de erros com mensagens claras e status HTTP adequados quando tentam incluir usuario/morador/visitante com email/cpf/rg já existente
 
 ### 📋 Em Desenvolvimento / Planejado
 - [ ] Implementar endpoints GET, PUT e DELETE para Usuários
@@ -685,7 +686,7 @@ Projeto desenvolvido como parte de estudos em arquitetura de software e desenvol
 - [ ] Adicionar validações com Bean Validation (@NotNull, @Email, @Size, etc.)
 - [ ] Implementar Spring Security com JWT
 - [ ] Adicionar criptografia de senhas (BCrypt)
-- [ ] Criar tratamento de exceções global (@ControllerAdvice)
+
 - [ ] Adicionar logs com SLF4J e Logback
 - [ ] Implementar testes unitários com JUnit 5 e Mockito
 - [ ] Implementar testes de integração
