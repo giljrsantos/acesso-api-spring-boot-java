@@ -104,6 +104,8 @@ acesso-api/
 │   │   │   │   │   ├── Visitante.java               # Entidade de domínio - Visitante
 │   │   │   │   │   └── Visita.java                  # Entidade de domínio - Registro de visita
 │   │   │   │   │
+│   │   │   │   ├── exceptions/
+│   │   │   │   │   └── BusinessException.java # Exceção para regras de negócio quando tentam incluir usuario/morador/visitante com email/cpf/rg já existente
 │   │   │   │   ├── ports/
 │   │   │   │   │   ├── MoradorRepositoryPort.java   # Interface - Contrato do repositório Morador
 │   │   │   │   │   ├── MoradorServicePort.java      # Interface - Contrato do serviço Morador
@@ -118,6 +120,9 @@ acesso-api/
 │   │   │   │       └── VisitanteService.java        # Implementação da lógica de negócio - Visitante
 │   │   │   │
 │   │   │   └── infra/
+│   │   │       ├── handlers/
+│   │   │       │   └── ApiError.java               # Implementação de tratamento de erros global de API
+│   │   │       │   └── ApplicationResourceAdvice.java # Implementação de tratamento de exceções global para regras de negócio
 │   │   │       └── BensConfig.java                  # Configurações gerais e Beans do projeto
 │   │   │
 │   │   └── resources/
