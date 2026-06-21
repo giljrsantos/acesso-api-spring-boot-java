@@ -678,7 +678,7 @@ Projeto desenvolvido como parte de estudos em arquitetura de software e desenvol
 - [x] Implementar endpoints POST para Morador com verificação de CPF duplicado e referência a Pessoa
 - [x] Implementar endpoints POST para Visitante com verificação de RG duplicatas e referência a Pessoa
 - [x] Criar DTOs, Controllers e Converters para Visitante
-- [x] Criar repositórios para Pessoa, Usuario e Morador
+- [x] Criar repositórios para Pessoa, Usuário e Morador
 - [x] Implementar converters para transformação de dados (DTO ↔ Domain)
 - [x] Configurar injeção de dependências com Spring
 - [x] Implementar endpoint GET para listar o Visitante pesquisando por RG
