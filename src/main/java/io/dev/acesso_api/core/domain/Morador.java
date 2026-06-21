@@ -57,4 +57,6 @@ public class Morador {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
+
+
 }

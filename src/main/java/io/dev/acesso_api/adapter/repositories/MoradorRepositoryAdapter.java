@@ -6,11 +6,16 @@ import io.dev.acesso_api.adapter.entities.UsuarioEntity;
 import io.dev.acesso_api.core.domain.Morador;
 import io.dev.acesso_api.core.domain.Pessoa;
 import io.dev.acesso_api.core.domain.Usuario;
+import io.dev.acesso_api.core.domain.Visitante;
 import io.dev.acesso_api.core.ports.MoradorRepositoryPort;
 import io.dev.acesso_api.core.ports.UsuarioRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -30,13 +35,19 @@ public class MoradorRepositoryAdapter implements MoradorRepositoryPort {
     }
 
     @Override
-    public Morador obtainByCpf(String cpf) {
-        MoradorEntity moradorByCpf = moradorRepository.findByCpf(cpf);
-        if(moradorByCpf == null){
-           //throw new IllegalArgumentException("Morador já com esse CPF já existe!");
-            return null;
-        }
-        return modelMapper.map(moradorByCpf, Morador.class);
+    public Optional<Morador> obtainByCpf(String cpf) {
+        return moradorRepository.findByCpf(cpf)
+                .map(moradorEntity -> modelMapper.map(moradorEntity, Morador.class));
     }
+
+    @Override
+    public Collection<Morador> getAllMoradores() {
+        return moradorRepository.findAll()
+                .stream()
+                .map(moradorEntity -> modelMapper.map(moradorEntity, Morador.class))
+                .toList();
+    }
+
+
 
 }

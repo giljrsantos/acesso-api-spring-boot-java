@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("api/moradores")
 @RequiredArgsConstructor
@@ -22,5 +25,20 @@ public class MoradorController {
     public MoradorDto createMorador(@RequestBody MoradorDto moradorDto) {
         Morador novoMorador = moradorServicePort.createMorador(moradorConverter.toTomain(moradorDto));
         return moradorConverter.toDto(novoMorador);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<MoradorDto> getAllMoradores() {
+        return moradorServicePort.getAllMoradores().stream()
+                .map(moradorConverter::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/{cpf}")
+    @ResponseStatus(HttpStatus.OK)
+    public MoradorDto obtainByCpf(@PathVariable String cpf){
+        Morador morador = moradorServicePort.obtainByCfp(cpf);
+        return moradorConverter.toDto(morador);
     }
 }

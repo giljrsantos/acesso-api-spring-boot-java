@@ -17,7 +17,7 @@ public class ApplicationResourceAdvice {
     }
 
     @ExceptionHandler(BusinessNotFoundException.class)
-    @ResponseStatus(HttpStatus.PRECONDITION_FAILED)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ApiErrorNotFound handleBusinessException(BusinessNotFoundException ex) {
         return new ApiErrorNotFound(ex.getMessage());
     }

@@ -683,8 +683,10 @@ Projeto desenvolvido como parte de estudos em arquitetura de software e desenvol
 - [x] Configurar injeção de dependências com Spring
 - [x] Implementar endpoint GET para listar o Visitante pesquisando por RG
 - [x] Implementar endpoint GET para listar todos os Visitantes cadastrados no sistema
+- [x] Implementar endpoint GET para listar o Morador pesquisando por CPF
+- [x] Implementar endpoint GET para listar todos os Moradores cadastrados no sistema
 - [x] Implementar tratamento de exceções global (@ControllerAdvice) -> Tratamento de erros com mensagens claras e status HTTP adequados quando tentam incluir usuario/morador/visitante com email/cpf/rg já existente
-- [x] Implementar tratamento de exceções global (@ControllerAdvice) -> Tratamento de erros com mensagens claras e status HTTP adequados quando o usuário não é encontrado pelo RG
+- [x] Implementar tratamento de exceções global (@ControllerAdvice) -> Tratamento de erros com mensagens claras e status HTTP adequados quando o Visitante/Morador não é encontrado pelo RG/CPF
 
 ### 📋 Em Desenvolvimento / Planejado
 - [ ] Implementar endpoints GET, PUT e DELETE para Usuários

@@ -1,9 +1,12 @@
 package io.dev.acesso_api.adapter.entities;
 
+import io.dev.acesso_api.core.domain.Morador;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Optional;
 
 @Entity
 @AllArgsConstructor
