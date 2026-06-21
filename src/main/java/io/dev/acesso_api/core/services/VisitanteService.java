@@ -3,6 +3,7 @@ package io.dev.acesso_api.core.services;
 
 import io.dev.acesso_api.core.domain.Visitante;
 import io.dev.acesso_api.core.exception.BusinessException;
+import io.dev.acesso_api.core.exception.BusinessNotFoundException;
 import io.dev.acesso_api.core.ports.VisitanteRepositoryPort;
 import io.dev.acesso_api.core.ports.VisitanteServicePort;
 
@@ -30,7 +31,7 @@ public class VisitanteService implements VisitanteServicePort {
     @Override
     public Visitante obtainByRg(String rg) {
         return visitanteRepositoryPort.obtainByRg(rg)
-                .orElseThrow(() -> new IllegalArgumentException("Visitante com esse Rg não encontrado!"));
+                .orElseThrow(() -> new BusinessNotFoundException("Visitante com esse Rg não encontrado!"));
     }
 
     @Override

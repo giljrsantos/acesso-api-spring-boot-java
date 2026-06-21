@@ -122,6 +122,7 @@ acesso-api/
 │   │   │   └── infra/
 │   │   │       ├── handlers/
 │   │   │       │   └── ApiError.java               # Implementação de tratamento de erros global de API
+│   │   │       │   └── ApiErrorNotFound.java        # Implementação de tratamento de erros para entidades não encontradas
 │   │   │       │   └── ApplicationResourceAdvice.java # Implementação de tratamento de exceções global para regras de negócio
 │   │   │       └── BensConfig.java                  # Configurações gerais e Beans do projeto
 │   │   │
@@ -683,6 +684,7 @@ Projeto desenvolvido como parte de estudos em arquitetura de software e desenvol
 - [x] Implementar endpoint GET para listar o Visitante pesquisando por RG
 - [x] Implementar endpoint GET para listar todos os Visitantes cadastrados no sistema
 - [x] Implementar tratamento de exceções global (@ControllerAdvice) -> Tratamento de erros com mensagens claras e status HTTP adequados quando tentam incluir usuario/morador/visitante com email/cpf/rg já existente
+- [x] Implementar tratamento de exceções global (@ControllerAdvice) -> Tratamento de erros com mensagens claras e status HTTP adequados quando o usuário não é encontrado pelo RG
 
 ### 📋 Em Desenvolvimento / Planejado
 - [ ] Implementar endpoints GET, PUT e DELETE para Usuários
