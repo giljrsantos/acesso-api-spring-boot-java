@@ -9,6 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+
 @Component
 @RequiredArgsConstructor
 public class UsuarioRepositoryAdapter implements UsuarioRepositoryPort {
@@ -26,12 +30,17 @@ public class UsuarioRepositoryAdapter implements UsuarioRepositoryPort {
     }
 
     @Override
-    public Usuario obtainByEmail(String email) {
-        UsuarioEntity usuarioByEmail = usuarioRepository.findByEmail(email);
-        if(usuarioByEmail == null){
-            return null;
-        }
-        return  modelMapper.map(usuarioByEmail, Usuario.class);
+    public Optional<Usuario> obtainByEmail(String email) {
+        return usuarioRepository.findByEmail(email)
+                .map(usuarioEntity -> modelMapper.map(usuarioEntity, Usuario.class));
+    }
+
+    @Override
+    public Collection<Usuario> getAllUsers() {
+        return usuarioRepository.findAll()
+                .stream()
+                .map(usuarioEntity -> modelMapper.map(usuarioEntity, Usuario.class))
+                .toList();
     }
 
 
