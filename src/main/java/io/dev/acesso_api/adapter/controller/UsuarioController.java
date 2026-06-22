@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("api/usuarios")
 @RequiredArgsConstructor
@@ -25,4 +28,21 @@ public class UsuarioController {
                         .createUsuario(usuarioConverter
                                 .toTomain(usuarioDto)));
     }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<UsuarioDto> getAllUsers(){
+        return usuarioServicePort.getAllUsers()
+                .stream()
+                .map(usuarioConverter::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/{email}")
+    @ResponseStatus(HttpStatus.OK)
+    public UsuarioDto getByEmail(@PathVariable String email){
+        Usuario usuario = usuarioServicePort.getByEmail(email);
+        return usuarioConverter.toDto(usuario);
+    }
+
 }
