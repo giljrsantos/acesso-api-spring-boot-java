@@ -35,10 +35,18 @@ public class MoradorController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{cpf}")
+    @GetMapping("/cpf/{cpf}")
     @ResponseStatus(HttpStatus.OK)
     public MoradorDto obtainByCpf(@PathVariable String cpf){
         Morador morador = moradorServicePort.obtainByCfp(cpf);
         return moradorConverter.toDto(morador);
     }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MoradorDto getByid(@PathVariable Long id){
+        Morador morador = moradorServicePort.getById(id);
+        return moradorConverter.toDto(morador);
+    }
+
 }

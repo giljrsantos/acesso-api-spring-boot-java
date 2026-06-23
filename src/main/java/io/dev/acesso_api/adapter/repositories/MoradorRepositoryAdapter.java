@@ -48,6 +48,12 @@ public class MoradorRepositoryAdapter implements MoradorRepositoryPort {
                 .toList();
     }
 
+    @Override
+    public Optional<Morador> getById(Long id) {
+        return moradorRepository.findById(id)
+                .map(moradorEntity -> modelMapper.map(moradorEntity, Morador.class));
+    }
+
 
 
 }

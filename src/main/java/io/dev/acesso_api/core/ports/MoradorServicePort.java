@@ -8,4 +8,6 @@ public interface MoradorServicePort {
     Morador createMorador(Morador morador);
     Morador obtainByCfp(String cpf);
     Collection<Morador> getAllMoradores();
+
+    Morador getById(Long id);
 }

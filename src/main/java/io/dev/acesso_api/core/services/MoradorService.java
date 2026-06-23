@@ -37,4 +37,10 @@ public class MoradorService implements MoradorServicePort {
     public Collection<Morador> getAllMoradores() {
         return moradorRepositoryPort.getAllMoradores();
     }
+
+    @Override
+    public Morador getById(Long id) {
+        return moradorRepositoryPort.getById(id)
+                .orElseThrow(() -> new BusinessNotFoundException("Morador não encontrado com esse ID"));
+    }
 }

@@ -9,4 +9,5 @@ public interface MoradorRepositoryPort {
     public Morador create(Morador morador);
     public Optional<Morador> obtainByCpf(String cpf);
     public Collection<Morador> getAllMoradores();
+    public Optional<Morador> getById(Long id);
 }
