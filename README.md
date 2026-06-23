@@ -681,10 +681,13 @@ Projeto desenvolvido como parte de estudos em arquitetura de software e desenvol
 - [x] Criar repositórios para Pessoa, Usuário e Morador
 - [x] Implementar converters para transformação de dados (DTO ↔ Domain)
 - [x] Configurar injeção de dependências com Spring
+- [x] Implementar endpoint GET para listar o Visitante pesquisando por ID
 - [x] Implementar endpoint GET para listar o Visitante pesquisando por RG
 - [x] Implementar endpoint GET para listar todos os Visitantes cadastrados no sistema
+- [x] Implementar endpoint GET para listar o Morador pesquisando por ID
 - [x] Implementar endpoint GET para listar o Morador pesquisando por CPF
 - [x] Implementar endpoint GET para listar todos os Moradores cadastrados no sistema
+- [x] Implementar endpoint GET para listar o Usuário pesquisando por ID
 - [x] Implementar endpoint GET para listar o Usuário pesquisando por Email
 - [x] Implementar endpoint GET para listar todos os Usuários cadastrados no sistema
 - [x] Implementar tratamento de exceções global (@ControllerAdvice) -> Tratamento de erros com mensagens claras e status HTTP adequados quando tentam incluir usuario/morador/visitante com email/cpf/rg já existente
