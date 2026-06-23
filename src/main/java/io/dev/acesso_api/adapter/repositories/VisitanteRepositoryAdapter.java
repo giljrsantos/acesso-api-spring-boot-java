@@ -42,4 +42,10 @@ public class VisitanteRepositoryAdapter implements VisitanteRepositoryPort {
                 .map(visitanteEntity -> modelMapper.map(visitanteEntity, Visitante.class))
                 .toList();
     }
+
+    @Override
+    public Optional<Visitante> getById(Long id) {
+        return visitanteRepository.findById(id)
+                .map(visitanteEntity -> modelMapper.map(visitanteEntity, Visitante.class));
+    }
 }

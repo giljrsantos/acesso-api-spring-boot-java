@@ -10,4 +10,6 @@ public interface VisitanteServicePort {
     Visitante obtainByRg(String rg);
 
     Collection<Visitante> listAll();
+
+    Visitante getById(Long id);
 }

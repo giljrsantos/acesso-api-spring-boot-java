@@ -39,4 +39,10 @@ public class VisitanteService implements VisitanteServicePort {
         return visitanteRepositoryPort.listAll();
     }
 
+    @Override
+    public Visitante getById(Long id) {
+        return visitanteRepositoryPort.getById(id)
+                .orElseThrow(() -> new BusinessNotFoundException("Visitante com esse ID não encontrado!"));
+    }
+
 }

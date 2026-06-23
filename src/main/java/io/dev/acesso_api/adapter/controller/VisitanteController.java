@@ -36,10 +36,17 @@ public class VisitanteController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{rg}")
+    @GetMapping("/rg/{rg}")
     @ResponseStatus(HttpStatus.OK)
     public VisitanteDto obtainByRg(@PathVariable String rg) {
         Visitante visitante = visitanteServicePort.obtainByRg(rg);
+        return visitanteConverter.toDto(visitante);
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public VisitanteDto getById(@PathVariable Long id){
+        Visitante visitante = visitanteServicePort.getById(id);
         return visitanteConverter.toDto(visitante);
     }
 }

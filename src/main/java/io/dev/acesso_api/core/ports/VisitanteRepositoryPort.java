@@ -10,4 +10,5 @@ public interface VisitanteRepositoryPort {
     public Optional<Visitante> obtainByRg(String rg);
 
     public Collection<Visitante> listAll();
+    public Optional<Visitante> getById(Long id);
 }
