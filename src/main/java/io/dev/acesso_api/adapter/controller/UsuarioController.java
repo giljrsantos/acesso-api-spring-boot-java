@@ -38,10 +38,17 @@ public class UsuarioController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("email/{email}")
     @ResponseStatus(HttpStatus.OK)
     public UsuarioDto getByEmail(@PathVariable String email){
         Usuario usuario = usuarioServicePort.getByEmail(email);
+        return usuarioConverter.toDto(usuario);
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public UsuarioDto getById(@PathVariable Long id){
+        Usuario usuario = usuarioServicePort.getById(id);
         return usuarioConverter.toDto(usuario);
     }
 

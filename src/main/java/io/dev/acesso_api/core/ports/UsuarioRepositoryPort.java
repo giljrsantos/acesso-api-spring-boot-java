@@ -9,4 +9,5 @@ public interface UsuarioRepositoryPort {
     public Usuario create(Usuario usuario);
     public Optional<Usuario> obtainByEmail(String email);
     public Collection<Usuario> getAllUsers();
+    public Optional<Usuario> getById(Long id);
 }

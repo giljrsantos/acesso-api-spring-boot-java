@@ -43,5 +43,11 @@ public class UsuarioRepositoryAdapter implements UsuarioRepositoryPort {
                 .toList();
     }
 
+    @Override
+    public Optional<Usuario> getById(Long id) {
+        return usuarioRepository.findById(id)
+                .map(usuarioEntity -> modelMapper.map(usuarioEntity, Usuario.class));
+    }
+
 
 }

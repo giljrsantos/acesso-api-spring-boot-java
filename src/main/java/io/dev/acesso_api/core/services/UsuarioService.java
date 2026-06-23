@@ -35,6 +35,12 @@ public class UsuarioService implements UsuarioServicePort {
     }
 
     @Override
+    public Usuario getById(Long id) {
+        return usuarioRepositoryPort.getById(id)
+                .orElseThrow(() -> new BusinessNotFoundException("Usuário não encontrado com esse id!"));
+    }
+
+    @Override
     public Collection<Usuario> getAllUsers() {
         return usuarioRepositoryPort.getAllUsers();
     }

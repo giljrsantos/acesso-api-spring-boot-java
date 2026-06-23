@@ -11,4 +11,6 @@ public interface UsuarioServicePort {
     Collection<Usuario> getAllUsers();
 
     Usuario getByEmail(String email);
+
+    Usuario getById(Long id);
 }
