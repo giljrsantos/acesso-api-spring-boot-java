@@ -12,4 +12,6 @@ public interface VisitanteServicePort {
     Collection<Visitante> listAll();
 
     Visitante getById(Long id);
+
+    Visitante updateVisitante(Long id, Visitante visitante);
 }

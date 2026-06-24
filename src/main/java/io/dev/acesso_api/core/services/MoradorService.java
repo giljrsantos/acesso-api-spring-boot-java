@@ -2,6 +2,7 @@ package io.dev.acesso_api.core.services;
 
 
 import io.dev.acesso_api.core.domain.Morador;
+import io.dev.acesso_api.core.domain.Visitante;
 import io.dev.acesso_api.core.exception.BusinessException;
 import io.dev.acesso_api.core.exception.BusinessNotFoundException;
 import io.dev.acesso_api.core.ports.MoradorRepositoryPort;
@@ -42,5 +43,28 @@ public class MoradorService implements MoradorServicePort {
     public Morador getById(Long id) {
         return moradorRepositoryPort.getById(id)
                 .orElseThrow(() -> new BusinessNotFoundException("Morador não encontrado com esse ID"));
+    }
+
+    @Override
+    public Morador updateMorador(Long id, Morador morador) {
+        // Verifica se o visitante existe
+        Morador moradorExistente = this.getById(id);
+
+        // Valida se o novo CPF já está cadastrado em outro visitante
+        if (!moradorExistente.getCpf().equals(morador.getCpf())) {
+            moradorRepositoryPort.obtainByCpf(morador.getCpf())
+                    .ifPresent(v -> {
+                        throw new BusinessNotFoundException("Morador com esse CPF já cadastrado!");
+                    });
+        }
+
+        // Atualiza os dados
+        moradorExistente.setCpf(morador.getCpf());
+        moradorExistente.setPessoa(morador.getPessoa());
+        moradorExistente.setEndereco(morador.getEndereco());
+        moradorExistente.setCelular(morador.getCelular());
+
+        // Persiste a atualização
+        return moradorRepositoryPort.update(moradorExistente);
     }
 }

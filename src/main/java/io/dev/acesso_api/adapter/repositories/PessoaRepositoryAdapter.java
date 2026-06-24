@@ -17,4 +17,9 @@ public class PessoaRepositoryAdapter {
         PessoaEntity pessoaEntity = modelMapper.map(pessoa, PessoaEntity.class);
         return pessoaRepository.save(pessoaEntity);
     }
+
+    public PessoaEntity obtainById(Long id) {
+        return pessoaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pessoa não encontrada com esse id: " + id));
+    }
 }

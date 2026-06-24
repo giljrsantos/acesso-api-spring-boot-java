@@ -2,7 +2,9 @@ package io.dev.acesso_api.adapter.controller;
 
 import io.dev.acesso_api.adapter.convertes.UsuarioConverter;
 import io.dev.acesso_api.adapter.dtos.UsuarioDto;
+import io.dev.acesso_api.adapter.dtos.VisitanteDto;
 import io.dev.acesso_api.core.domain.Usuario;
+import io.dev.acesso_api.core.domain.Visitante;
 import io.dev.acesso_api.core.ports.UsuarioServicePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -49,6 +51,13 @@ public class UsuarioController {
     @ResponseStatus(HttpStatus.OK)
     public UsuarioDto getById(@PathVariable Long id){
         Usuario usuario = usuarioServicePort.getById(id);
+        return usuarioConverter.toDto(usuario);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public UsuarioDto updateVisitante(@PathVariable Long id, @RequestBody UsuarioDto usuarioDto) {
+        Usuario usuario = usuarioServicePort.updateUsuario(id, usuarioConverter.toTomain(usuarioDto));
         return usuarioConverter.toDto(usuario);
     }
 

@@ -2,15 +2,14 @@ package io.dev.acesso_api.adapter.repositories;
 
 import io.dev.acesso_api.adapter.entities.PessoaEntity;
 import io.dev.acesso_api.adapter.entities.UsuarioEntity;
-import io.dev.acesso_api.core.domain.Pessoa;
 import io.dev.acesso_api.core.domain.Usuario;
+import io.dev.acesso_api.core.exception.BusinessNotFoundException;
 import io.dev.acesso_api.core.ports.UsuarioRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -47,6 +46,21 @@ public class UsuarioRepositoryAdapter implements UsuarioRepositoryPort {
     public Optional<Usuario> getById(Long id) {
         return usuarioRepository.findById(id)
                 .map(usuarioEntity -> modelMapper.map(usuarioEntity, Usuario.class));
+    }
+
+    @Override
+    public Usuario update(Usuario usuario) {
+        UsuarioEntity entity = modelMapper.map(usuario, UsuarioEntity.class);
+        // Busca a entidade existente para manter a pessoa atual
+        UsuarioEntity existente = usuarioRepository.findById(usuario.getId())
+                .orElseThrow(() -> new BusinessNotFoundException("Usuário não encontrado!"));
+
+        PessoaEntity pessoaEntity = existente.getPessoaEntity();
+        pessoaEntity.setNome(usuario.getPessoa().getNome());
+        // Mantém a pessoa existente
+        entity.setPessoaEntity(pessoaEntity);
+        UsuarioEntity updated = usuarioRepository.save(entity);
+        return modelMapper.map(updated, Usuario.class);
     }
 
 

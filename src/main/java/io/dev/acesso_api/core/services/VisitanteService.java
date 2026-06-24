@@ -8,7 +8,6 @@ import io.dev.acesso_api.core.ports.VisitanteRepositoryPort;
 import io.dev.acesso_api.core.ports.VisitanteServicePort;
 
 import java.util.Collection;
-import java.util.List;
 
 
 public class VisitanteService implements VisitanteServicePort {
@@ -43,6 +42,27 @@ public class VisitanteService implements VisitanteServicePort {
     public Visitante getById(Long id) {
         return visitanteRepositoryPort.getById(id)
                 .orElseThrow(() -> new BusinessNotFoundException("Visitante com esse ID não encontrado!"));
+    }
+
+    @Override
+    public Visitante updateVisitante(Long id, Visitante visitante) {
+        // Verifica se o visitante existe
+        Visitante visitanteExistente = this.getById(id);
+
+        // Valida se o novo RG já está cadastrado em outro visitante
+        if (!visitanteExistente.getRg().equals(visitante.getRg())) {
+            visitanteRepositoryPort.obtainByRg(visitante.getRg())
+                    .ifPresent(v -> {
+                        throw new BusinessNotFoundException("Visitante com esse Rg já cadastrado!");
+                    });
+        }
+
+        // Atualiza os dados
+        visitanteExistente.setRg(visitante.getRg());
+        visitanteExistente.setPessoa(visitante.getPessoa());
+
+        // Persiste a atualização
+        return visitanteRepositoryPort.update(visitanteExistente);
     }
 
 }

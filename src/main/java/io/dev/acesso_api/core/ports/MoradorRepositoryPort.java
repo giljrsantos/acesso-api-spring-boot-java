@@ -10,4 +10,5 @@ public interface MoradorRepositoryPort {
     public Optional<Morador> obtainByCpf(String cpf);
     public Collection<Morador> getAllMoradores();
     public Optional<Morador> getById(Long id);
+    public Morador update(Morador morador);
 }

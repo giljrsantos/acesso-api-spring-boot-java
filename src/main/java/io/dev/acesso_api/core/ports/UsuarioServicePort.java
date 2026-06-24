@@ -13,4 +13,6 @@ public interface UsuarioServicePort {
     Usuario getByEmail(String email);
 
     Usuario getById(Long id);
+
+    Usuario updateUsuario(Long id, Usuario usuario);
 }

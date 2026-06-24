@@ -10,4 +10,6 @@ public interface MoradorServicePort {
     Collection<Morador> getAllMoradores();
 
     Morador getById(Long id);
+
+    Morador updateMorador(Long id, Morador morador);
 }

@@ -3,7 +3,9 @@ package io.dev.acesso_api.adapter.controller;
 
 import io.dev.acesso_api.adapter.convertes.MoradorConverter;
 import io.dev.acesso_api.adapter.dtos.MoradorDto;
+import io.dev.acesso_api.adapter.dtos.UsuarioDto;
 import io.dev.acesso_api.core.domain.Morador;
+import io.dev.acesso_api.core.domain.Usuario;
 import io.dev.acesso_api.core.ports.MoradorServicePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -46,6 +48,13 @@ public class MoradorController {
     @ResponseStatus(HttpStatus.OK)
     public MoradorDto getByid(@PathVariable Long id){
         Morador morador = moradorServicePort.getById(id);
+        return moradorConverter.toDto(morador);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MoradorDto updateMorador(@PathVariable Long id, @RequestBody MoradorDto moradorDto) {
+        Morador morador = moradorServicePort.updateMorador(id, moradorConverter.toTomain(moradorDto));
         return moradorConverter.toDto(morador);
     }
 

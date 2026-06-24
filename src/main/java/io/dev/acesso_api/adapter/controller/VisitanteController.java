@@ -49,4 +49,11 @@ public class VisitanteController {
         Visitante visitante = visitanteServicePort.getById(id);
         return visitanteConverter.toDto(visitante);
     }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public VisitanteDto updateVisitante(@PathVariable Long id, @RequestBody VisitanteDto visitanteDto) {
+        Visitante visitante = visitanteServicePort.updateVisitante(id, visitanteConverter.toTomain(visitanteDto));
+        return visitanteConverter.toDto(visitante);
+    }
 }

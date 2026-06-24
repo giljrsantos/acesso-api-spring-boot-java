@@ -10,4 +10,6 @@ public interface UsuarioRepositoryPort {
     public Optional<Usuario> obtainByEmail(String email);
     public Collection<Usuario> getAllUsers();
     public Optional<Usuario> getById(Long id);
+
+    public Usuario update(Usuario usuario);
 }

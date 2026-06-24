@@ -11,4 +11,6 @@ public interface VisitanteRepositoryPort {
 
     public Collection<Visitante> listAll();
     public Optional<Visitante> getById(Long id);
+
+    public Visitante update(Visitante visitante);
 }
