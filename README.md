@@ -690,6 +690,7 @@ Projeto desenvolvido como parte de estudos em arquitetura de software e desenvol
 - [x] Implementar endpoint GET para listar o Usuário pesquisando por ID
 - [x] Implementar endpoint GET para listar o Usuário pesquisando por Email
 - [x] Implementar endpoint GET para listar todos os Usuários cadastrados no sistema
+- [x] Implementar endpoint PUT para atualizar Usuários/Moradores/Visitantes
 - [x] Implementar tratamento de exceções global (@ControllerAdvice) -> Tratamento de erros com mensagens claras e status HTTP adequados quando tentam incluir usuario/morador/visitante com email/cpf/rg já existente
 - [x] Implementar tratamento de exceções global (@ControllerAdvice) -> Tratamento de erros com mensagens claras e status HTTP adequados quando o Visitante/Morador/Usuário não é encontrado pelo RG/CPF/Email
 
