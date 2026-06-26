@@ -13,4 +13,6 @@ public interface VisitanteRepositoryPort {
     public Optional<Visitante> getById(Long id);
 
     public Visitante update(Visitante visitante);
+
+    public  void delete(Long id);
 }

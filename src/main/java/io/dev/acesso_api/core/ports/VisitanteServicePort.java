@@ -14,4 +14,6 @@ public interface VisitanteServicePort {
     Visitante getById(Long id);
 
     Visitante updateVisitante(Long id, Visitante visitante);
+
+    void delete(Long id);
 }

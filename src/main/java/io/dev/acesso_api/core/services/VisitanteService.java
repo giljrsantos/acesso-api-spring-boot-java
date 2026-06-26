@@ -56,13 +56,20 @@ public class VisitanteService implements VisitanteServicePort {
                         throw new BusinessNotFoundException("Visitante com esse Rg já cadastrado!");
                     });
         }
-
         // Atualiza os dados
         visitanteExistente.setRg(visitante.getRg());
         visitanteExistente.setPessoa(visitante.getPessoa());
 
         // Persiste a atualização
         return visitanteRepositoryPort.update(visitanteExistente);
+    }
+
+    @Override
+    public void delete(Long id) {
+        // Verifica se o visitante existe antes de deletar
+        this.getById(id);
+        //Se chegou aqui, o visitante existe, então deleta
+        visitanteRepositoryPort.delete(id);
     }
 
 }

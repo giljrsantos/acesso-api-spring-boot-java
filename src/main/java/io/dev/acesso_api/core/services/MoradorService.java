@@ -67,4 +67,13 @@ public class MoradorService implements MoradorServicePort {
         // Persiste a atualização
         return moradorRepositoryPort.update(moradorExistente);
     }
+
+    @Override
+    public void delete(Long id) {
+        // verifica se o morador existe antes de deletar
+        this.getById(id);
+
+        //se chegou aqui, o morador existe e vai ser deletado
+        moradorRepositoryPort.delete(id);
+    }
 }

@@ -12,4 +12,6 @@ public interface MoradorServicePort {
     Morador getById(Long id);
 
     Morador updateMorador(Long id, Morador morador);
+
+    void delete(Long id);
 }

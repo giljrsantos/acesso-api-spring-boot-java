@@ -11,4 +11,6 @@ public interface MoradorRepositoryPort {
     public Collection<Morador> getAllMoradores();
     public Optional<Morador> getById(Long id);
     public Morador update(Morador morador);
+
+    public void delete(long id);
 }

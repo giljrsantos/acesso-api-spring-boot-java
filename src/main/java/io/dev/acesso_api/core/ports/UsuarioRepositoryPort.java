@@ -12,4 +12,6 @@ public interface UsuarioRepositoryPort {
     public Optional<Usuario> getById(Long id);
 
     public Usuario update(Usuario usuario);
+
+    public void delete(Long id);
 }

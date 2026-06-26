@@ -66,4 +66,9 @@ public class VisitanteRepositoryAdapter implements VisitanteRepositoryPort {
         VisitanteEntity updated = visitanteRepository.save(entity);
         return modelMapper.map(updated, Visitante.class);
     }
+
+    @Override
+    public void delete(Long id) {
+        visitanteRepository.deleteById(id);
+    }
 }

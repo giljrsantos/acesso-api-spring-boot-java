@@ -74,6 +74,10 @@ public class MoradorRepositoryAdapter implements MoradorRepositoryPort {
         return modelMapper.map(updated, Morador.class);
     }
 
+    @Override
+    public void delete(long id) {
+        moradorRepository.deleteById(id);;
+    }
 
 
 }

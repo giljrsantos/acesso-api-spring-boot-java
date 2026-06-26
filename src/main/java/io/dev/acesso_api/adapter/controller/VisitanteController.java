@@ -56,4 +56,10 @@ public class VisitanteController {
         Visitante visitante = visitanteServicePort.updateVisitante(id, visitanteConverter.toTomain(visitanteDto));
         return visitanteConverter.toDto(visitante);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteVisitante(@PathVariable Long id){
+        visitanteServicePort.delete(id);
+    }
 }

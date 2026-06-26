@@ -58,4 +58,10 @@ public class MoradorController {
         return moradorConverter.toDto(morador);
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteMorador(@PathVariable Long id){
+        moradorServicePort.delete(id);
+    }
+
 }

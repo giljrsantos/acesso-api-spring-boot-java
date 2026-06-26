@@ -61,4 +61,10 @@ public class UsuarioController {
         return usuarioConverter.toDto(usuario);
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUsuario(@PathVariable Long id){
+        usuarioServicePort.delete(id);
+    }
+
 }

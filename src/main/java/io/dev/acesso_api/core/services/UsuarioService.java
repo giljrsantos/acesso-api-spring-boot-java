@@ -65,6 +65,14 @@ public class UsuarioService implements UsuarioServicePort {
     }
 
     @Override
+    public void delete(Long id) {
+        // Verifica se usuario existe antes de deletar
+        this.getById(id);
+        // se chegou aqui, significa que o usuário existe, então podemos deletar
+        usuarioRepositoryPort.delete(id);;
+    }
+
+    @Override
     public Collection<Usuario> getAllUsers() {
         return usuarioRepositoryPort.getAllUsers();
     }

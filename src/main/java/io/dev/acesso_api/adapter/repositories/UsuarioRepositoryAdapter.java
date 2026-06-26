@@ -63,5 +63,10 @@ public class UsuarioRepositoryAdapter implements UsuarioRepositoryPort {
         return modelMapper.map(updated, Usuario.class);
     }
 
+    @Override
+    public void delete(Long id) {
+        usuarioRepository.deleteById(id);
+    }
+
 
 }

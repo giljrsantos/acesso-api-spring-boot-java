@@ -15,4 +15,6 @@ public interface UsuarioServicePort {
     Usuario getById(Long id);
 
     Usuario updateUsuario(Long id, Usuario usuario);
+
+    void delete(Long id);
 }
